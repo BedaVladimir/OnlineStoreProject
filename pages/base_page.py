@@ -17,7 +17,7 @@ class BasePage:
         self.driver.get(self.url)
 
     def is_element_present(self, by, element):
-        """Метод для  элемента на странице"""
+        """Метод для проверки нахождения элемента на странице"""
         try:
             self.driver.find_element(by, element)
         except NoSuchElementException:
