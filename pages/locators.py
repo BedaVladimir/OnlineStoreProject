@@ -29,8 +29,9 @@ class ProductsPageLocators:
 class CartPageLocators:
     """Локаторы элементов на странице корзины"""
     CART_ITEM = (By.XPATH, "//div[@class='cart_item']")
-    NAME_PROD_IN_CART = (By.XPATH, "//div[@class='inventory_item_name']")
-    PRICE_PROD_IN_CART = (By.XPATH, "//div[@class='inventory_item_price']")
+    NAME_PRODUCT_IN_CART = (By.XPATH, "//div[@class='inventory_item_name']")
+    DESC_PRODUCT_IN_CART = (By.XPATH, "//div[@class='inventory_item_desc']")
+    PRICE_PRODUCT_IN_CART = (By.XPATH, "//div[@class='inventory_item_price']")
     REMOVE_BTN_IN_CART = (By.XPATH, "//button[@class='btn btn_secondary btn_small cart_button']")
     CONTINUE_SHOP_BTN = (By.XPATH, "//button[@id='continue-shopping']")
     CHECKOUT_BTN = (By.XPATH, "//button[@id='checkout']")
