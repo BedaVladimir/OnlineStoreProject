@@ -1,11 +1,11 @@
 from pages.base_page import BasePage
-from pages.locators import ProductsPageLocators
+from pages.locators import ProductsPageLocators, CartPageLocators
 from selenium.webdriver.support.select import Select
-import random
 
 
 class ProductsPage(BasePage):
     """Класс описывает страницу выбора товаров"""
+
     def check_title_page_products(self):
         """Метод проверяет заголовок на странице товаров"""
         title = self.driver.find_element(*ProductsPageLocators.PAGE_TITLE).text
@@ -30,13 +30,27 @@ class ProductsPage(BasePage):
         if value == "lohi":
             assert sorted(price_list) == sort_list, f"{sorted(price_list)} != sort_list (По возрастанию)"
         if value == "hilo":
-            assert sorted(price_list, reverse=True) == sort_list, f"{sorted(price_list)} != sort_list(По убыванию)"
+            assert sorted(price_list, reverse=True) == sort_list, f"{sorted(price_list)} != sort_list (По убыванию)"
 
-    def add_and_remove_product(self):
+    def add_and_check_remove_btn(self, rndm):
         """Метод проверяет появление кнопки 'Remove' в карточке товара после нажатия кнопки 'Add to cart' """
-        rndm = random.randint(0, 5)  # рандомное число от 0 до 5, которое нужно для выбора случайного товара из 6
-        product_name = self.driver.find_elements(*ProductsPageLocators.PRODUCT_NAME)[rndm].text
-        self.driver.find_elements(*ProductsPageLocators.ADD_TO_CART_BTN)[rndm].click()
+        self.add_to_cart_product(rndm)
         assert self.is_element_present(*ProductsPageLocators.REMOVE_BTN), \
             "После добавления товара кнопка 'Remove' не появилась"
-        print(product_name, rndm)
+
+    def click_cart_link(self):
+        """Метод кликает по ссылке на корзину и переходит в нее"""
+        self.driver.find_element(*ProductsPageLocators.SHOPPING_CART_LINK).click()
+        self.check_title_page(*CartPageLocators.CART_TITLE, "Your Cart")
+
+    def save_attr_product(self, rndm):
+        """Метод сохраняет аттрибуты товара (название, описание, цену) на странице магазина для дальнейшего сравнения"""
+        attr_list = list()
+        attr_list.append(self.driver.find_elements(*ProductsPageLocators.PRODUCT_NAME)[rndm].text)
+        attr_list.append(self.driver.find_elements(*ProductsPageLocators.PRODUCT_DESCRIPTION)[rndm].text)
+        attr_list.append(self.driver.find_elements(*ProductsPageLocators.PRODUCT_PRICE)[rndm].text)
+        return attr_list
+
+    def add_to_cart_product(self, rndm):
+        """Метод добавления товара в корзину"""
+        self.driver.find_elements(*ProductsPageLocators.ADD_TO_CART_BTN)[rndm].click()

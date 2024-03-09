@@ -29,4 +29,4 @@ class BasePage:
          by, element - передается значение локатора
          expect_title - передается строка с названием заголовка соответствующей страницы"""
         title = self.driver.find_element(by, element).text
-        assert title == except_title, "Заголовок на странице должен быть - {title}"
+        assert title == except_title, f"Заголовок на странице должен быть - {title}"

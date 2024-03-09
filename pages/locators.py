@@ -28,6 +28,7 @@ class ProductsPageLocators:
 
 class CartPageLocators:
     """Локаторы элементов на странице корзины"""
+    CART_TITLE = (By.XPATH, "//span[@class='title']")
     CART_ITEM = (By.XPATH, "//div[@class='cart_item']")
     NAME_PRODUCT_IN_CART = (By.XPATH, "//div[@class='inventory_item_name']")
     DESC_PRODUCT_IN_CART = (By.XPATH, "//div[@class='inventory_item_desc']")
@@ -39,6 +40,7 @@ class CartPageLocators:
 
 class UserInfoLocators:
     """Страница с вводом информации пользователя (инфо для отправки товара)"""
+    USER_INFO_TITLE = (By.XPATH, "//div/span[@class='title']")
     FIRST_NAME = (By.XPATH, "//input[@id='first-name']")
     LAST_NAME = (By.XPATH, "//input[@id='last-name']")
     ZIP_CODE = (By.XPATH, "//input[@id='postal-code']")
