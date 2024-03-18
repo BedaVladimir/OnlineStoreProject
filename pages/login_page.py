@@ -11,7 +11,6 @@ class LoginPage(BasePage):
         self.driver.find_element(*AuthPageLocators.LOGIN_INPUT).send_keys(login)
         self.driver.find_element(*AuthPageLocators.PASSWORD_INPUT).send_keys(password)
         self.driver.find_element(*AuthPageLocators.LOGIN_BUTTON).click()
-        self.check_title_page(*ProductsPageLocators.PAGE_TITLE, "Products")
 
     def get_auth_error_msg(self, error_message):
         """Метод проверки наличия сообщения с ошибкой авторизации

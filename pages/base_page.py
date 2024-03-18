@@ -1,6 +1,8 @@
 from selenium.common.exceptions import NoSuchElementException
 import datetime
 
+from pages.locators import BaseLocators
+
 
 class BasePage:
     """Базовый класс"""
@@ -23,10 +25,9 @@ class BasePage:
             return False
         return True
 
-    def check_title_page(self, /, by, element, except_title):
+    def check_title_page(self, except_title):
         """Метод проверяет заголовок на странице
          Метод нужен для подтверждения, что нажатие по кнопке осуществило переход юзера на правильную страницу
-         by, element - передается значение локатора
          expect_title - передается строка с названием заголовка соответствующей страницы"""
-        title = self.driver.find_element(by, element).text
+        title = self.driver.find_element(*BaseLocators.TITLE).text
         assert title == except_title, f"Заголовок на странице должен быть - {title}"

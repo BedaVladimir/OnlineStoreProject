@@ -1,6 +1,11 @@
 from selenium.webdriver.common.by import By
 
 
+class BaseLocators:
+    """Локаторы, которые есть на каждой странице"""
+    TITLE = (By.XPATH, "//span[@class='title']")
+
+
 class AuthPageLocators:
     """Локаторы элементов на странице авторизации"""
     LOGIN_INPUT = (By.XPATH, "//input[@id='user-name']")
@@ -8,11 +13,11 @@ class AuthPageLocators:
     LOGIN_BUTTON = (By.XPATH, "//input[@id='login-button']")
     ERROR_MSG_CONTAINER = (By.XPATH, "//div[@class='error-message-container error']")
     ERROR_MESSAGE = (By.XPATH, "//div/h3[@data-test='error']")
+    PAGE_TITLE = (By.XPATH, "//span[@class='title']")
 
 
 class ProductsPageLocators:
     """Локаторы элементов на странице выбора товаров"""
-    PAGE_TITLE = (By.XPATH, "//span[@class='title']")
     SORT_SELECTOR = (By.XPATH, "//select[@class='product_sort_container']")
     SHOPPING_CART_LINK = (By.XPATH, "//a[@class='shopping_cart_link']")
     PRODUCT_COUNT = (By.XPATH, "//span[@class='shopping_cart_badge']")  # счетчик кол-ва товаров в корзине
@@ -28,7 +33,6 @@ class ProductsPageLocators:
 
 class CartPageLocators:
     """Локаторы элементов на странице корзины"""
-    CART_TITLE = (By.XPATH, "//span[@class='title']")
     CART_ITEM = (By.XPATH, "//div[@class='cart_item']")
     NAME_PRODUCT_IN_CART = (By.XPATH, "//div[@class='inventory_item_name']")
     DESC_PRODUCT_IN_CART = (By.XPATH, "//div[@class='inventory_item_desc']")
@@ -40,7 +44,6 @@ class CartPageLocators:
 
 class UserInfoLocators:
     """Локаторы элементов страницы с вводом информации пользователя (инфо для отправки товара)"""
-    USER_INFO_TITLE = (By.XPATH, "//div/span[@class='title']")
     FIRST_NAME = (By.XPATH, "//input[@id='first-name']")
     LAST_NAME = (By.XPATH, "//input[@id='last-name']")
     ZIP_CODE = (By.XPATH, "//input[@id='postal-code']")
@@ -52,7 +55,6 @@ class UserInfoLocators:
 
 class CheckoutPageLocators:
     """Локаторы элементов страницы подтверждения заказа"""
-    CHECKOUT_TITLE = (By.XPATH, "//div[@class='header_secondary_container']/span")
     NAME_PRODUCT_CHECK = (By.XPATH, "//div[@class='cart_item_label']/a/div")
     DESC_PRODUCT_CHECK = (By.XPATH, "//div[@class='cart_item_label']/div[@class='inventory_item_desc']")
     PRICE_PRODUCT_CHECK = (By.XPATH, "//div[@class='item_pricebar']/div")

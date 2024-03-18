@@ -6,11 +6,6 @@ from selenium.webdriver.support.select import Select
 class ProductsPage(BasePage):
     """Класс описывает страницу выбора товаров"""
 
-    def check_title_page_products(self):
-        """Метод проверяет заголовок на странице товаров"""
-        title = self.driver.find_element(*ProductsPageLocators.PAGE_TITLE).text
-        assert title == "Products", "Заголовок на странице товаров должен быть Products"
-
     def select_sort_filter(self, *, value):
         """Метод проверяет сортировку товаров по цене
         варианты переменной value:
