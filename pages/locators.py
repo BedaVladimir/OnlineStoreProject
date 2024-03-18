@@ -39,17 +39,27 @@ class CartPageLocators:
 
 
 class UserInfoLocators:
-    """Страница с вводом информации пользователя (инфо для отправки товара)"""
+    """Локаторы элементов страницы с вводом информации пользователя (инфо для отправки товара)"""
     USER_INFO_TITLE = (By.XPATH, "//div/span[@class='title']")
     FIRST_NAME = (By.XPATH, "//input[@id='first-name']")
     LAST_NAME = (By.XPATH, "//input[@id='last-name']")
     ZIP_CODE = (By.XPATH, "//input[@id='postal-code']")
     CANCEL_BTN = (By.XPATH, "//button[@id='cancel']")
-    CONTINUE_BTN = (By.XPATH, "//input[@id='continue']")
+    CONTINUE_BTN = (By.XPATH, "//form//input[@id='continue']")
     ERROR_MSG_ELEMENT = (By.XPATH, "//div[@class='error-message-container error']")
     ERROR_MSG_TEXT = (By.XPATH, "//div/h3[@data-test='error']")
 
 
 class CheckoutPageLocators:
-    """Страница подтверждения заказа"""
-    #  Возможно, надо унаследовать от другого класса, чтобы не прописывать по новой локаторы
+    """Локаторы элементов страницы подтверждения заказа"""
+    CHECKOUT_TITLE = (By.XPATH, "//div[@class='header_secondary_container']/span")
+    NAME_PRODUCT_CHECK = (By.XPATH, "//div[@class='cart_item_label']/a/div")
+    DESC_PRODUCT_CHECK = (By.XPATH, "//div[@class='cart_item_label']/div[@class='inventory_item_desc']")
+    PRICE_PRODUCT_CHECK = (By.XPATH, "//div[@class='item_pricebar']/div")
+    ITEM_TOTAL = (By.XPATH, "//div[@class='summary_subtotal_label']")
+    TAX = (By.XPATH, "//div[@class='summary_tax_label']")
+    TOTAL_PRICE = (By.XPATH, "//div[@class='summary_info_label summary_total_label']")
+    CANCEL_BUTTON = (By.XPATH, "//button[@id='cancel']")
+    FINISH_BUTTON = (By.XPATH, "//button[@id='finish']")
+    COMPLETE_TEXT = (By.XPATH, "//h2[@class='complete-header']")
+    BACK_HOME_BTN = (By.XPATH, "//button[@id='back-to-products']")

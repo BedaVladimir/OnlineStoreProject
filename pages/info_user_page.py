@@ -1,5 +1,7 @@
+import time
+
 from pages.base_page import BasePage
-from pages.locators import UserInfoLocators
+from pages.locators import UserInfoLocators, CheckoutPageLocators
 
 
 class InfoUserPage(BasePage):
@@ -8,12 +10,10 @@ class InfoUserPage(BasePage):
     def fill_in_user_info(self, *, fname, lname, zipcode):
         """Метод заполняет поля информации о покупателе
         параметры fname, lname, zipcode - будут передаваться при вызове функции в тесте
-        Чтобы после этого метода был переход к дальнейшим действиям в тесте - нужно заполнить все 3 поля
-        """
+        Чтобы после этого метода был переход к дальнейшим действиям в тесте - нужно заполнить все 3 поля"""
         self.driver.find_element(*UserInfoLocators.FIRST_NAME).send_keys(fname)
         self.driver.find_element(*UserInfoLocators.LAST_NAME).send_keys(lname)
         self.driver.find_element(*UserInfoLocators.ZIP_CODE).send_keys(zipcode)
-        self.driver.find_element(*UserInfoLocators.CONTINUE_BTN).click()
 
     def get_user_info_error_msg(self, error_message):
         """Метод проверки наличия сообщения с ошибкой ввода данных
@@ -29,5 +29,10 @@ class InfoUserPage(BasePage):
         assert error.text == error_message, "Сообщение об ошибке авторизации не соответствует ошибке сделанной тестом"
 
     def click_cancel_button(self):
-        """Метод проверяет переход работу кнопки 'Cancel' """
+        """Метод проверяет работу кнопки 'Cancel' """
         self.driver.find_element(*UserInfoLocators.CANCEL_BTN).click()
+
+    def click_continue_btn_in_infopage(self):
+        """ Метод проверяет работу кнопки 'Continue' на странице ввода информации пользователя"""
+        self.driver.find_element(*UserInfoLocators.CONTINUE_BTN).click()
+        self.check_title_page(*CheckoutPageLocators.CHECKOUT_TITLE, "Checkout: Overview")
