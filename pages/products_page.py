@@ -1,5 +1,5 @@
 from pages.base_page import BasePage
-from pages.locators import ProductsPageLocators, CartPageLocators
+from pages.locators import ProductsPageLocators
 from selenium.webdriver.support.select import Select
 
 
@@ -33,10 +33,12 @@ class ProductsPage(BasePage):
         assert self.is_element_present(*ProductsPageLocators.REMOVE_BTN), \
             "После добавления товара кнопка 'Remove' не появилась"
 
+    def click_remove_btn(self):
+        self.driver.find_element(*ProductsPageLocators.REMOVE_BTN).click()
+
     def click_cart_link(self):
         """Метод кликает по ссылке на корзину и переходит в нее"""
         self.driver.find_element(*ProductsPageLocators.SHOPPING_CART_LINK).click()
-        self.check_title_page(*CartPageLocators.CART_TITLE, "Your Cart")
 
     def save_attr_product(self, rndm):
         """Метод сохраняет аттрибуты товара (название, описание, цену) на странице магазина для дальнейшего сравнения"""

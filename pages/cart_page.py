@@ -1,5 +1,5 @@
 from pages.base_page import BasePage
-from pages.locators import CartPageLocators, UserInfoLocators
+from pages.locators import CartPageLocators
 
 
 class CartPage(BasePage):
@@ -12,7 +12,6 @@ class CartPage(BasePage):
     def click_checkout_button(self):
         """Метод кликает по кнопке для перехода на страницу ввода информации"""
         self.driver.find_element(*CartPageLocators.CHECKOUT_BTN).click()
-        self.check_title_page(*UserInfoLocators.USER_INFO_TITLE, "Checkout: Your Information")
 
     def remove_product_from_cart(self):
         """Метод удаляет из корзины ранее добавленный товар. После удаления сравнивает 2 списка и проверяет,

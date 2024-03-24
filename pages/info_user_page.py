@@ -1,13 +1,11 @@
-import time
-
 from pages.base_page import BasePage
-from pages.locators import UserInfoLocators, CheckoutPageLocators
+from pages.locators import UserInfoLocators
 
 
 class InfoUserPage(BasePage):
     """Класс описывает страницу ввода информации покупателя"""
 
-    def fill_in_user_info(self, *, fname, lname, zipcode):
+    def fill_in_user_info(self, /, fname, lname, zipcode):
         """Метод заполняет поля информации о покупателе
         параметры fname, lname, zipcode - будут передаваться при вызове функции в тесте
         Чтобы после этого метода был переход к дальнейшим действиям в тесте - нужно заполнить все 3 поля"""
@@ -35,4 +33,3 @@ class InfoUserPage(BasePage):
     def click_continue_btn_in_infopage(self):
         """ Метод проверяет работу кнопки 'Continue' на странице ввода информации пользователя"""
         self.driver.find_element(*UserInfoLocators.CONTINUE_BTN).click()
-        self.check_title_page(*CheckoutPageLocators.CHECKOUT_TITLE, "Checkout: Overview")
