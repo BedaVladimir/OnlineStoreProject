@@ -1,6 +1,8 @@
 from pages.login_page import LoginPage
+import pytest
 
 
+@pytest.mark.negative
 def test_auth_without_login(driver):  # здесь метку негативного теста
     """Тест проверяет сценарий попытки авторизации без введенного логина"""
     page = LoginPage(driver, url="https://www.saucedemo.com/")

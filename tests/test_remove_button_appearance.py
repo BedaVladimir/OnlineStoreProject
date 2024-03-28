@@ -1,8 +1,10 @@
 from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 import random
+import pytest
 
 
+@pytest.mark.regression
 def test_remove_button_appearance(driver):
     """Тест проверяет появление кнопки 'Remove' после нажатия кнопки 'Add to cart'
     В тест передается переменная rndm для выбора случайного товара из списка"""

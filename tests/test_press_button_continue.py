@@ -2,8 +2,10 @@ from pages.cart_page import CartPage
 from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 import random
+import pytest
 
 
+@pytest.mark.regression
 def test_click_button_continue(driver):
     """Тест проверяет переход на страницу выбора товаров после нажатия кнопки 'Continue shopping'
     В тест передается переменная rndm для выбора случайного товара из списка"""

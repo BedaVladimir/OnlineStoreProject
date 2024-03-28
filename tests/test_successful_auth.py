@@ -1,7 +1,10 @@
 from pages.login_page import LoginPage
+import pytest
 
 
-def test_successful_auth(driver):  # метку смок тест
+@pytest.mark.smoke
+@pytest.mark.regression
+def test_successful_auth(driver):
     """Тест проверяет сценарий авторизации в магазине"""
     page = LoginPage(driver, url="https://www.saucedemo.com/")
     page.open_url()

@@ -2,10 +2,12 @@ from pages.cart_page import CartPage
 from pages.info_user_page import InfoUserPage
 from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
+import pytest
 
 
+@pytest.mark.regression
 def test_press_button_cancel(driver):
-    """Тест появления сообщения с ошибкой о незаполенном поле 'Last name'"""
+    """Тест нажатия кнопки 'Cancel' на странице заполнения информации"""
     page = LoginPage(driver, url="https://www.saucedemo.com/")
     page.open_url()
     page.auth(login="standard_user", password="secret_sauce")

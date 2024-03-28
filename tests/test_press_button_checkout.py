@@ -2,10 +2,12 @@ from pages.cart_page import CartPage
 from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 import random
+import pytest
 
 
-def test_click_button_continue(driver):
-    """Тест проверяет удаление товара из корзины по кнопке 'Remove'
+@pytest.mark.regression
+def test_click_button_checkout(driver):
+    """Тест проверяет нажатие кнопки в корзине 'Checkout'
     В тест передается переменная rndm для выбора случайного товара из списка"""
     rndm = random.randint(0, 5)
     page = LoginPage(driver, url="https://www.saucedemo.com/")

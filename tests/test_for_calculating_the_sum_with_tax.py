@@ -5,8 +5,11 @@ from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 import random
 from faker import Faker
+import pytest
 
 
+@pytest.mark.smoke
+@pytest.mark.regression
 def test_for_calculating_the_sum_all_products(driver):
     """Тест считает сумму всех товаров и налог, после чего сравнивает с итогом на странице подтверждения
     В тест передается переменные rndm и rndm2 для выбора случайных товаров из списка

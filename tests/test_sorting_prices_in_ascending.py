@@ -1,7 +1,9 @@
 from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
+import pytest
 
 
+@pytest.mark.regression
 def test_for_sorting_prices_in_ascending_order(driver):
     """Тест проверяет механизм сортировки товаров по цене(по возрастанию)"""
     page = LoginPage(driver, url="https://www.saucedemo.com/")

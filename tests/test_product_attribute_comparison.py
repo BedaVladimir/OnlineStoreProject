@@ -7,6 +7,8 @@ from faker import Faker
 import pytest
 
 
+@pytest.mark.smoke
+@pytest.mark.regression
 @pytest.mark.parametrize("list_products", [0, 1, 2, 3, 4, 5])  # список с индексами всех товаров на сайте
 def test_product_attribute_comparison(driver, list_products):
     """Тест проверяет соответствие описания, цены и названия товара на всех страницах

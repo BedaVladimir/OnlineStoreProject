@@ -3,9 +3,11 @@ from pages.info_user_page import InfoUserPage
 from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 from faker import Faker
+import pytest
 
 
-def test_filling_user_info_without_zipcode(driver):  # метку негативный поставить
+@pytest.mark.negative
+def test_filling_user_info_without_zipcode(driver):
     """Тест появления сообщения с ошибкой о незаполенном поле 'Zipcode'
     В тест передаются перменные со случайными тестовыми значениями: fname, lname, postcode"""
     fake = Faker()

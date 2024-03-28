@@ -3,8 +3,11 @@ from pages.info_user_page import InfoUserPage
 from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 from faker import Faker
+import pytest
 
 
+@pytest.mark.smoke
+@pytest.mark.regression
 def test_filling_all_user_information(driver):
     """Тест заполнения всей информации о покупателе на странице данных о покупателе
     В тест передаются перменные со случайными тестовыми значениями: fname, lname, postcode"""

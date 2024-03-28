@@ -5,10 +5,13 @@ from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 import random
 from faker import Faker
+import pytest
 
 
-def test_for_calculating_the_sum_all_products(driver):
-    """Тест считает сумму всех товаров и налог, после чего сравнивает с итогом на странице подтверждения
+@pytest.mark.smoke
+@pytest.mark.regression
+def test_product_purchase(driver):
+    """Тест проверяет сценарий покупки товара
     В тест передается переменные rndm и для выбора случайного товара из списка
     В тест передаются переменные со случайными тестовыми значениями: fname, lname, postcode"""
     rndm = random.randint(0, 5)
