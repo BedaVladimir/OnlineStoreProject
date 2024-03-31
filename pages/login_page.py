@@ -1,6 +1,6 @@
 from pages.base_page import BasePage
 from pages.locators import AuthPageLocators
-from pages.locators import ProductsPageLocators
+import allure
 
 
 class LoginPage(BasePage):
@@ -8,9 +8,10 @@ class LoginPage(BasePage):
 
     def auth(self, *, login, password):
         """Метод авторизации в интернет-магазине"""
-        self.driver.find_element(*AuthPageLocators.LOGIN_INPUT).send_keys(login)
-        self.driver.find_element(*AuthPageLocators.PASSWORD_INPUT).send_keys(password)
-        self.driver.find_element(*AuthPageLocators.LOGIN_BUTTON).click()
+        with allure.step("Авторизоваться в интернет магазине"):
+            self.driver.find_element(*AuthPageLocators.LOGIN_INPUT).send_keys(login)
+            self.driver.find_element(*AuthPageLocators.PASSWORD_INPUT).send_keys(password)
+            self.driver.find_element(*AuthPageLocators.LOGIN_BUTTON).click()
 
     def get_auth_error_msg(self, error_message):
         """Метод проверки наличия сообщения с ошибкой авторизации
@@ -20,5 +21,6 @@ class LoginPage(BasePage):
         2. Epic sadface: Password is required - переменная password пустая методе 'auth' пустая
         3. Epic sadface: Username and password do not match any user in this service - переменная login или password
         введены неправильно"""
-        error = self.driver.find_element(*AuthPageLocators.ERROR_MESSAGE)
-        assert error_message == error.text, "Сообщение об ошибке авторизации не соответствует ошибке сделанной тестом"
+        with allure.step("Сравнить текст ошибки с образцом при авторизации без одного из полей"):
+            error = self.driver.find_element(*AuthPageLocators.ERROR_MESSAGE)
+            assert error_message == error.text, "Сообщение об ошибке авторизации не равно ошибке сделанной тестом"

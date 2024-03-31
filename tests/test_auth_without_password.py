@@ -1,7 +1,9 @@
 from pages.login_page import LoginPage
 import pytest
+import allure
 
 
+@allure.title("Попытка авторизации в системе с отсутствующим паролем для входа")
 @pytest.mark.negative
 def test_auth_without_password(driver):  # здесь метку негативного теста
     """Тест проверяет сценарий попытки авторизации без введенного пароля"""

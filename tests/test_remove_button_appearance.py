@@ -2,8 +2,10 @@ from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 import random
 import pytest
+import allure
 
 
+@allure.title("Появление кнопки 'Remove' после добавления товара в корзину")
 @pytest.mark.regression
 def test_remove_button_appearance(driver):
     """Тест проверяет появление кнопки 'Remove' после нажатия кнопки 'Add to cart'

@@ -3,8 +3,10 @@ from pages.info_user_page import InfoUserPage
 from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 import pytest
+import allure
 
 
+@allure.title("Отмена ввода информации о покупателе")
 @pytest.mark.regression
 def test_press_button_cancel(driver):
     """Тест нажатия кнопки 'Cancel' на странице заполнения информации"""

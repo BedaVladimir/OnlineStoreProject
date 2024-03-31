@@ -6,8 +6,10 @@ from pages.products_page import ProductsPage
 import random
 from faker import Faker
 import pytest
+import allure
 
 
+@allure.title("Сравнение суммы нескольких товаров и налога на них итоговой ценой + налог на странице покупки")
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_for_calculating_the_sum_all_products(driver):

@@ -3,8 +3,10 @@ from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 import random
 import pytest
+import allure
 
 
+@allure.title("Удаление товара из корзины")
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_remove_product_in_cart(driver):

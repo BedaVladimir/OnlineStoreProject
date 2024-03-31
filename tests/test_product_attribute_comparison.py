@@ -5,8 +5,10 @@ from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 from faker import Faker
 import pytest
+import allure
 
 
+@allure.title("Соответствие аттрибутов товара на всех страницах магазина")
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.parametrize("list_products", [0, 1, 2, 3, 4, 5])  # список с индексами всех товаров на сайте
@@ -28,7 +30,7 @@ def test_product_attribute_comparison(driver, list_products):
     # сохранение значений цены, описания, и названия товара на странице корзины в переменную
     cart_page_attr = cart_page.save_attr_product_in_cart()
     # сравнение значений цены, описания, названия товара со страниц магазина и корзины
-    assert product_page_attr == cart_page_attr, \
+    assert product_page_attr.__eq__(cart_page_attr), \
         "Информация о товаре в корзине отличается от информации на странице магазина"
     cart_page.click_checkout_button()
     info_page = InfoUserPage(driver, driver.current_url)
@@ -37,5 +39,5 @@ def test_product_attribute_comparison(driver, list_products):
     checkout_page = CheckoutPage(driver, driver.current_url)
     # сохранение значений цены, описания, и названия товара на странице подтверждения покупки в переменную
     checkout_page_attr = checkout_page.save_attr_product_in_check_page()
-    assert cart_page_attr == checkout_page_attr, \
+    assert cart_page_attr.__eq__(checkout_page_attr), \
         "Информация о товаре в корзине отличается от информации на странице подтверждения покупки"

@@ -1,7 +1,9 @@
 from pages.login_page import LoginPage
 import pytest
+import allure
 
 
+@allure.title("Авторизация пользователя в интернет-магазине")
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_successful_auth(driver):

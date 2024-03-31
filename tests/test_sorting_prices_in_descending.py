@@ -1,8 +1,10 @@
 from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 import pytest
+import allure
 
 
+@allure.title("Сортировка товаров по цене(по убыванию)")
 @pytest.mark.regression
 def test_for_sorting_prices_in_descending_order(driver):
     """Тест проверяет механизм сортировки товаров по цене(по убыванию)"""

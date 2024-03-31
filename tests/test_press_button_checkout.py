@@ -3,8 +3,10 @@ from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 import random
 import pytest
+import allure
 
 
+@allure.title("Переход из корзины на страницу ввода информации о покупателе")
 @pytest.mark.regression
 def test_click_button_checkout(driver):
     """Тест проверяет нажатие кнопки в корзине 'Checkout'

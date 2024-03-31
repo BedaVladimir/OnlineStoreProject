@@ -6,8 +6,10 @@ from pages.products_page import ProductsPage
 import random
 from faker import Faker
 import pytest
+import allure
 
 
+@allure.title("Выбор товара из каталога и его покупка")
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_product_purchase(driver):

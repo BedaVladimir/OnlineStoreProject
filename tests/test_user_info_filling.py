@@ -4,8 +4,10 @@ from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 from faker import Faker
 import pytest
+import allure
 
 
+@allure.title("Заполнение контактной информации о покупателе")
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_filling_all_user_information(driver):

@@ -4,8 +4,10 @@ from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 from faker import Faker
 import pytest
+import allure
 
 
+@allure.title("Попытка заполнения контактной информации о покупателе без почтового индекса")
 @pytest.mark.negative
 def test_filling_user_info_without_zipcode(driver):
     """Тест появления сообщения с ошибкой о незаполенном поле 'Zipcode'

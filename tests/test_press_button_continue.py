@@ -3,8 +3,10 @@ from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
 import random
 import pytest
+import allure
 
 
+@allure.title("Переход из корзины обратно на страницу выбора товаров")
 @pytest.mark.regression
 def test_click_button_continue(driver):
     """Тест проверяет переход на страницу выбора товаров после нажатия кнопки 'Continue shopping'
