@@ -1,6 +1,17 @@
 name: Auto tests
 
-on: push
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: Choose target
+        required: true
+        default:
+        type: choice
+        options:
+          - all_tests
+          - smoke_tests
+          - regression_tests
 
 jobs:
   test:
@@ -17,5 +28,12 @@ jobs:
         run: sudo apt-get install google-chrome-stable
       - name: install dependencies
         run: pip install -r requirements.txt
-      - name: Run tests
+      - name: all_tests
+        if: "github.event.inputs.deployment_target == 'all_tests'"
         run: pytest
+      - name: smoke_tests
+        if: "github.event.inputs.deployment_target == 'smoke_tests'"
+        run: pytest tests/ -s -v -m "smoke tests"
+      - name: regression_tests
+        if: "github.event.inputs.deployment_target == 'regression_tests'"
+        run: pytest tests/ -s -v -m "regression tests"
