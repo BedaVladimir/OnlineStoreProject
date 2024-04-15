@@ -30,10 +30,10 @@ jobs:
         run: pip install -r requirements.txt
       - name: all_tests
         if: "github.event.inputs.deployment_target == 'all_tests'"
-        run: pytest
+        run: pytest --alluredir==allure_tests
       - name: smoke_tests
         if: "github.event.inputs.deployment_target == 'smoke_tests'"
-        run: pytest tests/ -s -v -m "smoke tests"
+        run: pytest tests/ -s -v -m "smoke tests" --alluredir==allure_tests
       - name: regression_tests
         if: "github.event.inputs.deployment_target == 'regression_tests'"
-        run: pytest tests/ -s -v -m "regression tests"
+        run: pytest tests/ -s -v -m "regression tests" --alluredir==allure_tests
