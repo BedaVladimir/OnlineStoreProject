@@ -6,7 +6,7 @@ on:
       deployment_target:
         description: Choose target
         required: true
-        default:
+        default: all_tests
         type: choice
         options:
           - all_tests
@@ -36,4 +36,39 @@ jobs:
         run: pytest tests/ -s -v -m "smoke tests" --alluredir==allure_tests
       - name: regression_tests
         if: "github.event.inputs.deployment_target == 'regression_tests'"
-        run: pytest tests/ -s -v -m "regression tests" --alluredir==allure_tests
+        run: pytest tests/ -s -v -m "regression tests" --alluredir==allure_results
+      - name: Store allure results
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure_results
+          path:
+            allure_results
+          retention-days: 1
+
+  generate-report:
+    runs-on: ubuntu-latest
+    needs: test
+    name: Generate report
+    steps:
+      - uses: actions/setup-java@v3
+        with:
+          distibution: 'microsoft'
+          java-version: '17'
+      - run: sudo wget https://github.com/allure-framework/allure2/releases/download/2.23.1/allure-2.23.1.tgz && sudo tar -zxvf allure-2.23.1.tgz -C /opt/ && sudo ln -s /opt/allure-2.23.1/bin/allure /usr/bin/allure
+      - run: allure generate -c allure_results -o _site
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v3
+      - run: allure generate -c allure_results -o _site
+    
+  publish-report:
+    runs-on: ubuntu-latest
+    needs: generate-report
+    name: Report publication
+    steps:
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v3
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v2
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1.2.9
